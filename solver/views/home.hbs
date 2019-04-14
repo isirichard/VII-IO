@@ -1,0 +1,100 @@
+{{> head}}
+{{> navbar}}
+<div class="jumbotron ">
+  <div class="container ">
+
+
+    <div class="row">
+      <div class="col m-auto"></div>
+      <div class="col m-auto">Var A</div>
+      <div class="col m-auto">Var B</div>
+      <div class="col m-auto "></div>
+      <div class="col m-auto "></div>
+    </div>
+    <div class="row">
+      <div class="col m-auto">Z</div>
+      <input class="col m-auto" type="text" name="z1" id="z1" placeholder="6">
+      <input class="col m-auto" type="text" name="z2" id="z2" placeholder="5">
+      <input class="col m-auto" type="text" name="" id="" style="visibility:hidden">
+      <input class="col m-auto bg-light" type="text" name="" id="rm" disabled>
+
+    </div>
+
+    <div class="row">
+      <div class="col m-auto">Rest</div>
+      <input class="col m-auto" type="text" name="r11" id="r11" placeholder="3">
+      <input class="col m-auto" type="text" name="r12" id="r12" placeholder="2">
+      <div class="col m-auto">
+        <select name="r1s" id="r1s" class="">
+          <option value="maximo">&#8804</option>
+          <option value="minimo">&#8805</option>
+        </select>
+      </div>
+      <input class="col m-auto" type="text" name="rf1" id="rf1" placeholder="120">
+    </div>
+
+    <div class="row">
+      <div class="col m-auto">Rest</div>
+      <input class="col m-auto" type="text" name="r21" id="r21" placeholder="3">
+      <input class="col m-auto" type="text" name="r22" id="r22" placeholder="4">
+      <div class="col m-auto">
+        <select name="r2s" id="r2s" class="">
+          <option>&#8804</option>
+          <option>&#8805</option>
+        </select>
+      </div>
+      <input class="col m-auto" type="text" name="rf2" id="rf2" placeholder="180">
+    </div>
+
+
+    <div class="row mt-4">
+      <div class="col m-auto">
+        <select name="zm" class="">
+          <option value="max">Max</option>
+          <option value="min">Min</option>
+        </select>
+      </div>
+      <input class="col m-auto" type="text" name="" id="rvarA" disabled>
+      <input class="col m-auto" type="text" name="" id="rvarB" disabled>
+      <input class="col m-auto" type="text" name="" id="" style="visibility:hidden">
+      <button id="solver" class="col m-auto btn btn-primary">Solver</button>
+    </div>
+
+  </div>
+</div>
+{{> footer}}
+
+<script type="text/javascript">
+  $(document).ready(() => {
+    var r1s = $("#r1s option:selected").val();
+    console.log(r1s);
+    $('#solver').click(() => {
+      $.ajax({
+        url: '/solver',
+        type: 'POST',
+        data: {
+          z1: $('#z1').val(),
+          z2: $('#z2').val(),
+          r11: $('#r11').val(),
+          r12: $('#r12').val(),
+          r21: $('#r21').val(),
+          r22: $('#r22').val(),
+          rf1: $('#rf1').val(),
+          rf2: $('#rf2').val(),
+          r1s: $('#r1s').val(),
+          r2s: $('#r2s').val(),
+          zm: $('#zm').val()
+        },
+        dataType: 'json',
+        success: (data) => {
+          console.log(data);
+          console.log(data.TipoA);
+          $('#rvarA').val(data.TipoA);
+          $('#rvarB').val(data.TipoB);
+          $('#rm').val(data.result);
+        }
+
+      });
+    });
+  });
+</script>

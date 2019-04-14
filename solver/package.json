@@ -1,0 +1,19 @@
+{
+    "name": "06-webserver",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node server.js",
+        "nodemon": "nodemon server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.16.4",
+        "hbs": "^4.0.3",
+        "javascript-lp-solver": "^0.4.5",
+        "pdfkit": "^0.9.0"
+    }
+}
