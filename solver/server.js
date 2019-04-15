@@ -17,7 +17,7 @@ hbs.registerPartials(__dirname + '/views/parciales');
 
 app.set('view engine', 'hbs');
 
-//helper
+//helper 
 app.get('/', (req, res) => {
     //res.send('Hola Mundo');
     //res.render('home');
@@ -41,6 +41,8 @@ app.get('/about', (req, res) => {
 
 
 app.post('/solver', (req, res) => {
+    //modificación grabo cambios ctrl + s
+    //nodemon permite bajar y levantar el servidor
     let body = req.body;
     console.log(body);
     var javascriptLpSolver = require("javascript-lp-solver"),
